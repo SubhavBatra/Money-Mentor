@@ -19,7 +19,7 @@ st.markdown("## Let's Play")
 
 #dropdown for stocks
 st.markdown("### Which Stock you want to buy today?")
-stock = st.selectbox("Select a stock", ["BLK", "MSFT", "TSLA","GS", "JPM", "META", "ORCL", "TWTR"])
+stock_name = st.selectbox("Select a stock", ["ACN", "AXP", "BLK", "BP", "CTSH", "CVX", "F", "GS", "INTC", "JPM", "KO", "MA", "MELI", "META", "MS", "MSFT", "ORCL", "TWTR", "V", "XOM"])
 
 # text for how much money to invest in stock
 st.markdown("### How much money do you want to invest in this stock?")
@@ -37,7 +37,7 @@ duration = st.slider("", 1, 29, 1)
 # button to buy
 buy = st.button("Buy")
 
-stock_data = pd.read_csv(f"data/{stock}.csv")
+stock_data = pd.read_csv(f"data/{stock_name}_ans.csv")
 
 if buy == True:
     # calculate the number of stocks

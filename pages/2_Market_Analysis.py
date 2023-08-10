@@ -1,5 +1,10 @@
 import streamlit as st
 from helper import get_info
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
+import yfinance as yf
 
 st.set_page_config(page_title="Ms. RYE", layout="wide", initial_sidebar_state="expanded")  
 st.title("Ms. RYE")
@@ -9,10 +14,15 @@ subheading = st.header("Learn and grow")
 st.subheader("Let's see what's happening in the market today")
 
 # dropdown
-stock = st.selectbox("Select a stock", ["BLK", "MSFT", "TSLA","GS", "JPM", "META", "ORCL", "TWTR"])
+stock = st.selectbox("Select a stock", ["ACN", "AXP", "BLK", "BP", "CTSH", "CVX", "F", "GS", "INTC", "JPM", "KO", "MA", "MELI", "META", "MS", "MSFT", "ORCL", "TWTR", "V", "XOM"])
 
-#display the image of the stock from images folder
-st.image(f"images/{stock}.jpeg")
+# Fetch stock data
+if stock:
+    stock_data = yf.download(stock, start="2018-01-01", end="2023-08-08")
+    fig = px.line(stock_data, x=stock_data.index, y='Close', title=f'{stock} Stock Price')
+    
+    # Display the interactive graph
+    st.plotly_chart(fig)
 
 
 # get the latest news
