@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
-
+def get_status():
+   return 1  
 st.set_page_config(page_title="Ms. RYE", layout="wide", initial_sidebar_state="expanded")  
 st.title("Ms. RYE")
 # st.markdown("Learn and grow")
@@ -10,6 +11,7 @@ subheading = st.header("Learn and grow")
 st.subheader("Baisc Questionnaire for us to serve you better")
 score = 0
 # set default radio button to null
+status=2
 
 q1 = st.slider("Are you aware of Stock Market?", 0, 5, 2)
 score += q1
@@ -65,3 +67,4 @@ if butt == True:
                     
         ## How to research a company before investing in it. 
         Before you invest in a company, it is important to research the company thoroughly. This includes researching the company's financial statements, its products and services.""")
+

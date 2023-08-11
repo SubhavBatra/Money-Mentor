@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import matplotlib.pyplot as plt
+# from Home import get_status
 
 
 
@@ -18,6 +19,7 @@ def get_info(stock):
 
 if __name__ == "__main__":
     latest_news = get_info("GS")
+    status = get_status()
 
     for news in latest_news:
         title = news.find("a").text

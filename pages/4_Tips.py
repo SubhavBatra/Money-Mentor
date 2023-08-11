@@ -1,18 +1,18 @@
-from Home import status
 import streamlit as st
 import pandas as pd
 import numpy as np
-import pickle
 
 st.set_page_config(page_title="Ms. RYE", layout="wide", initial_sidebar_state="expanded")  
 st.title("Ms. RYE")
 # st.markdown("Learn and grow")
+
 subheading = st.header("Learn and grow")
-status = 1
-if status == 0:
+status = st.selectbox("Select your status", ["NA", "Beginner", "Intermediate"])
+# status = 1
+if status == "Beginner":
     st.subheader("As you are a Beginner, we recommend you to start with the basics")
 
-else:
+elif status == "Intermediate":
     st.subheader("As you are an Intermediate, we recommend you to study the following")
 
 lang = st.selectbox("Select a language", ["English", "Hindi"])
@@ -31,3 +31,92 @@ long_videos_eng = ["https://youtube.com/shorts/YRk8NypX904?feature=share", "http
 
 translate = "http://translate.google.com/translate?js=n&sl=auto&tl=hi&u="
 
+# generate set of random private keys of length 8 including numbers, alphabets, and special characters
+
+keys = ["iVEsY9hnGg","8s66dzfO2W","OS1p5rJPhI","PIlZRp75qW","bIH8k02KYi","2lLegMN8Uy"]
+
+# recommend 2 random articles, 2 random short videos, 1 random long video accroding to language and status
+but = st.button("Recommend")
+
+if but:
+
+    if lang == "English":
+        if status == "Beginner":
+            st.markdown("### Articles")
+            # random 2 articles
+            st.markdown(f"1. [{english_articles_beg[0]}]({english_articles_beg[0]})")
+            
+            st.markdown(f"2. [{english_articles_beg[1]}]({english_articles_beg[1]})")
+
+
+            st.markdown("### Short Videos")
+            st.markdown(f"1. [{short_videos_eng[0]}]({short_videos_eng[0]})")
+            st.markdown(f"2. [{short_videos_eng[1]}]({short_videos_eng[1]})")
+            st.markdown(f"3. [{short_videos_eng[2]}]({short_videos_eng[2]})")
+
+            st.markdown("### Long Videos")
+            st.markdown(f"1. [{long_videos_eng[0]}]({long_videos_eng[0]})")
+            st.markdown(f"2. [{long_videos_eng[1]}]({long_videos_eng[1]})")
+
+        elif status == "Intermediate":
+            st.markdown("### Articles")
+            st.markdown(f"1. [{english_articles_inter[0]}]({english_articles_inter[0]})")
+            st.markdown(f"2. [{english_articles_inter[1]}]({english_articles_inter[1]})")
+
+            st.markdown("### Short Videos")
+            st.markdown(f"1. [{short_videos_eng[3]}]({short_videos_eng[3]})")
+            st.markdown(f"2. [{short_videos_eng[4]}]({short_videos_eng[4]})")
+
+            st.markdown("### Long Videos")
+            st.markdown(f"3. [{long_videos_eng[2]}]({long_videos_eng[2]})")
+            st.markdown(f"4. [{long_videos_eng[3]}]({long_videos_eng[3]})")
+    
+    else:
+        if status == "Beginner":
+            st.markdown("### Articles")
+            st.markdown(f"1. [{translate}{english_articles_beg[2]}]({translate}{english_articles_beg[2]})")
+            st.markdown(f"2. [{translate}{english_articles_beg[3]}]({translate}{english_articles_beg[3]})")
+
+            st.markdown("### Short Videos")
+            st.markdown(f"1. [{short_videos_hindi[0]}]({short_videos_hindi[0]})")
+            st.markdown(f"2. [{short_videos_hindi[1]}]({short_videos_hindi[1]})")
+            st.markdown(f"3. [{short_videos_hindi[2]}]({short_videos_hindi[2]})")
+
+            st.markdown("### Long Videos")
+            st.markdown(f"1. [{long_videos_hindi[0]}]({long_videos_hindi[0]})")
+            st.markdown(f"2. [{long_videos_hindi[1]}]({long_videos_hindi[1]})")
+
+        elif status == "Intermediate":
+            st.markdown("### Articles")
+            st.markdown(f"1. [{translate}{english_articles_inter[2]}]({translate}{english_articles_inter[2]})")
+            st.markdown(f"2. [{translate}{english_articles_inter[3]}]({translate}{english_articles_inter[3]})")
+
+            st.markdown("### Short Videos")
+            st.markdown(f"1. [{short_videos_hindi[3]}]({short_videos_hindi[3]})")
+            st.markdown(f"2. [{short_videos_hindi[4]}]({short_videos_hindi[4]})")
+
+            st.markdown("### Long Videos")
+            st.markdown(f"1. [{long_videos_hindi[2]}]({long_videos_hindi[2]})")
+            st.markdown(f"2. [{long_videos_hindi[3]}]({long_videos_hindi[3]})")
+            # butt_key = st.button(" Generate Key")
+            # if butt_key:
+    
+            #     key = np.random.choice(keys)
+            #     st.sidebar.markdown(f"Your key is {key}")
+
+    # butt_key = st.button(" Generate Key")
+    # if butt_key:
+    
+    #     key = np.random.choice(keys)
+    #     st.sidebar.markdown(f"Your key is {key}")
+
+#make a session state to store the key
+if "key" not in st.session_state:
+    st.session_state["key"] = None
+butt_key = st.button(" Generate Key")
+if butt_key: 
+    key = np.random.choice(keys)
+    st.session_state["key"] = key
+if "key" in st.session_state:
+    st.sidebar.markdown(f"Your key is {st.session_state['key']}")
+    del st.session_state["key"]
