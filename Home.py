@@ -8,21 +8,25 @@ st.set_page_config(page_title="Ms. RYE", layout="wide", initial_sidebar_state="e
 st.title("Ms. RYE")
 # st.markdown("Learn and grow")
 subheading = st.header("Learn and grow")
-st.subheader("Baisc Questionnaire for us to serve you better")
+st.subheader("Basic Questionnaire for us to serve you better")
 score = 0
 # set default radio button to null
 status=2
 
 q1 = st.slider("Are you aware of Stock Market?", 0, 5, 2)
 score += q1
-q2 = st.slider("Have you ever invested in Stock Market?", 0,5,2)
-score += q2
-q3 = st.slider("Do you Trade frequently?", 0,5,2)
-score += q3
-q4 = st.slider("Have you ever made a Portfolio?", 0,5,2)
-score += q4
-q5 = st.slider("Do you have a Demat Account?", 0,5,2)
-score += q5
+q2 = st.radio("Have you ever invested in Stocks?", ("Yes", "No", "NA"), index=2)
+if q2 == "Yes":
+    score += 5
+q3 = st.radio("Do you trade frequently?", ("Yes", "No", "NA"), index=2)
+if q3 == "Yes":
+    score += 5
+q4 = st.radio("Have you ever made a portfolio?", ("Yes", "No", "NA"), index=2)
+if q4 == "Yes":
+    score += 5
+q5 = st.radio("Do you have a Demat Account?", ("Yes", "No", "NA"), index=2)
+if q5 == "Yes":
+    score += 5
 
 butt = st.button("Submit")
 
@@ -68,3 +72,13 @@ if butt == True:
         ## How to research a company before investing in it. 
         Before you invest in a company, it is important to research the company thoroughly. This includes researching the company's financial statements, its products and services.""")
 
+
+# upload a video to the page
+video_file = open('video.mp4', 'rb')
+# reduce width and height of video
+video_bytes = video_file.read()
+
+# tutorial of the platform
+st.markdown("## Tutorial and how to use our platform")
+
+st.video(video_bytes)
