@@ -8,11 +8,15 @@ st.sidebar.title("Ms. RYE")
 # st.markdown("Learn and grow")
 # subheading = st.header("Learn and grow")
 
-money = 10000
+if 'money' not in st.session_state:
+    st.session_state['money'] = 10000
+
+if 'Profit/Loss' not in st.session_state:
+    st.session_state['Profit/Loss'] = 0
 
 # display the current money on top of the page
 st.sidebar.markdown("## Current Money in $")
-st.sidebar.markdown(money)
+st.sidebar.markdown(st.session_state['money'])
 
 # write lets play button on centre
 st.markdown("## Let's Play")
@@ -25,7 +29,7 @@ stock_name = st.selectbox("Select a stock", ["ACN", "AXP", "BLK", "BP", "CTSH", 
 st.markdown("### How much money do you want to invest in this stock?")
 # slider for money
 money_invest = st.number_input("Money")
-if money_invest>money:
+if money_invest>st.session_state['money']:
     st.markdown("### You don't have enough money to invest in this stock")
     st.stop()
 
@@ -43,7 +47,7 @@ if buy == True:
     # calculate the number of stocks
     number_of_stocks = money_invest/stock_data["Close"][0]
     # calculate the money left
-    money_left = money - (number_of_stocks*stock_data["Close"][0])
+    money_left = st.session_state['money'] - (number_of_stocks*stock_data["Close"][0])
     # calculate the money after duration
     money_after_invest = money_left + (number_of_stocks*stock_data["Close"][duration])
     # display the money left
@@ -54,15 +58,20 @@ if buy == True:
     st.markdown(number_of_stocks)
     # display the profit or loss
     st.markdown("## Profit/Loss")
-    st.markdown(f"{round((money_after_invest-money),2)}")
+    st.markdown(f"{round((money_after_invest-st.session_state['money']),2)}")
 
-    st.markdown("## Money after investment in $")
-    st.markdown(money+round((money_after_invest-money),2))
+    # st.markdown("## Money after investment in $")
+    # st.markdown(money+round((money_after_invest-money),2))
 
 # change the money to money after investment and update in sidebar and delete the previous money
-    money = money+round((money_after_invest-money),2)
+    st.session_state['money'] = money_left
     st.sidebar.markdown("## Current Money in $")
-    st.sidebar.markdown(money)
+    st.sidebar.markdown(st.session_state['money'])
+
+    # st.session_state['Profit/Loss'] = 0
+    
+    st.sidebar.markdown("## Final Profit/Loss in $")
+    st.sidebar.markdown(st.session_state['Profit/Loss'])
 
 
 
