@@ -4,8 +4,8 @@ import numpy as np
 import pickle
 def get_status():
    return 1  
-st.set_page_config(page_title="Ms. RYE", layout="wide", initial_sidebar_state="expanded")  
-st.title("Ms. RYE")
+st.set_page_config(page_title="Money Mentor", layout="wide", initial_sidebar_state="expanded")  
+st.title("Money Mentor")
 # st.markdown("Learn and grow")
 subheading = st.header("Learn and grow")
 st.subheader("Basic Questionnaire for us to serve you better")
@@ -74,11 +74,12 @@ if butt == True:
 
 
 # upload a video to the page
-video_file = open('video.mp4', 'rb')
+# video_file = open('video.mp4', 'rb')
 # reduce width and height of video
-video_bytes = video_file.read()
+# video_bytes = video_file.read()
 
 # tutorial of the platform
 st.markdown("## Tutorial and how to use our platform")
+st.write("1. Home => 2. Market Analysis => 3. Profit Loss => 4. Tips Section, generate key and add money in Profit Loss page")
 
-st.video(video_bytes)
+# st.video(video_bytes)
