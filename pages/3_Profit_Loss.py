@@ -3,8 +3,8 @@ import pandas as pd
 import numpy as np
 import pickle
 
-st.set_page_config(page_title="Ms. RYE", layout="wide", initial_sidebar_state="expanded")  
-st.sidebar.title("Ms. RYE")
+st.set_page_config(page_title="Profit/Loss", layout="wide", initial_sidebar_state="expanded")  
+st.sidebar.title("Money Mentor")
 # st.markdown("Learn and grow")
 # subheading = st.header("Learn and grow")
 
