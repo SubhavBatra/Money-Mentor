@@ -1,2 +1,3 @@
 # Money Mentor
-### Live Link: money-mentor.streamlit.app
+### Live Link:
+https://money-mentor.streamlit.app
