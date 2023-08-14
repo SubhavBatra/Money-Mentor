@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import plotly.express as px
 import yfinance as yf
 
-st.set_page_config(page_title="Profit Loss", layout="wide", initial_sidebar_state="expanded")  
+st.set_page_config(page_title="Market Analysis", layout="wide", initial_sidebar_state="expanded")  
 st.title("Money Mentor")
 # st.markdown("Learn and grow")
 subheading = st.header("Learn and grow")
